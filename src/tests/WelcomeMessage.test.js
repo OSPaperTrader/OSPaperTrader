@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // Components
-import WelcomeMessage from './WelcomeMessage';
+import WelcomeMessage from '../WelcomeMessage';
 
 function setup() {
   const props = {
