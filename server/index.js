@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
+const mainController = require('./controller.js');
 
 const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
-const db = require('../models/stocks-db.js');
+
 
 const app = express();
 // const stock = require('../routes/stock');
@@ -11,33 +12,14 @@ const app = express();
 const DIST_DIR = path.join(__dirname, '../dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
-const mockResponse = {
-  foo: 'bar',
-  bar: 'foo',
-};
-
-db.query('SELECT NOW()', (err, result) => {
-  if (err) {
-    return ({ log: err.stack, message: 'Error executing query in getData' });
-  }
-  console.log('result', result.rows);
-});
-
-db.query('SELECT * from stocks', (err, result) => {
-  if (err) {
-    return ({ log: err.stack, message: 'Error executing query in getData' });
-  }
-  console.log('result', result.rows);
-});
-
 
 app.use(bodyParser.json());
 app.use(express.static(DIST_DIR));
 
 // app.use('/api/stock', stock);
 
-app.get('/api', (req, res) => {
-  res.send(mockResponse);
+app.get('/api', mainController.getBTCData, (req, res) => {
+  res.send(res.locals.data);
 });
 
 app.get('/', (req, res) => {
