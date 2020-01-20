@@ -11,24 +11,8 @@ const stock = require("../routes/stock");
 const port = process.env.PORT || 3000;
 const DIST_DIR = path.join(__dirname, "../dist");
 const HTML_FILE = path.join(DIST_DIR, "index.html");
-const mongoURL = process.env.MONGO_CONN;
 
-mongoose.Promise = global.Promise;
 
-mongoose
-  .connect(mongoURL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true
-  })
-  .then(
-    () => {
-      console.log("Database is connected");
-    },
-    err => {
-      console.log("Cannot connect to database " + err);
-    }
-  );
 
 const mockResponse = {
   foo: "bar",
@@ -50,6 +34,6 @@ app.get("/", (req, res) => {
   res.status(200).sendFile(HTML_FILE);
 });
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("App listening on port: " + port);
 });

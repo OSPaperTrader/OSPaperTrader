@@ -27,7 +27,7 @@ class App extends Component {
         console.log("Res.data: ", res.data);
         this.setState({ stocks: res.data });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -81,7 +81,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1 className="App__Title">FakeInvestor</h1>
+        <h1 className="App__Title">OSPaperTrader</h1>
         {/* <SearchBar
           value={value}
           onChange={this.handleChange}
