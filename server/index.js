@@ -1,39 +1,49 @@
-const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+const express = require('express');
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+const db = require('../models/stocks-db.js');
 
 const app = express();
-const stock = require("../routes/stock");
+// const stock = require('../routes/stock');
 
-const port = process.env.PORT || 3000;
-const DIST_DIR = path.join(__dirname, "../dist");
-const HTML_FILE = path.join(DIST_DIR, "index.html");
-
-
+const DIST_DIR = path.join(__dirname, '../dist');
+const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 const mockResponse = {
-  foo: "bar",
-  bar: "foo"
+  foo: 'bar',
+  bar: 'foo',
 };
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+db.query('SELECT NOW()', (err, result) => {
+  if (err) {
+    return ({ log: err.stack, message: 'Error executing query in getData' });
+  }
+  console.log('result', result.rows);
+});
+
+db.query('SELECT * from stocks', (err, result) => {
+  if (err) {
+    return ({ log: err.stack, message: 'Error executing query in getData' });
+  }
+  console.log('result', result.rows);
+});
+
+
 app.use(bodyParser.json());
 app.use(express.static(DIST_DIR));
 
-app.use("/api/stock", stock);
+// app.use('/api/stock', stock);
 
-app.get("/api", (req, res) => {
+app.get('/api', (req, res) => {
   res.send(mockResponse);
 });
 
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).sendFile(HTML_FILE);
 });
 
-app.listen(port, function () {
-  console.log("App listening on port: " + port);
+app.listen(PORT, () => {
+  console.log(`App listening on PORT: ${PORT}`);
 });

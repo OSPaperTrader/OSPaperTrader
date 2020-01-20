@@ -1,16 +1,13 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const path = require("path");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
+
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
+  template: './src/index.html',
+  filename: './index.html',
 });
 module.exports = {
-  entry: "./src/index.js",
-  output: {
-    path: path.join(__dirname, "dist"),
-    filename: "[name].js"
-  },
+  entry: './src/index.js',
   plugins: [htmlPlugin, new CleanWebpackPlugin()],
   module: {
     rules: [
@@ -18,13 +15,13 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.s?css$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
-  }
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
 };
