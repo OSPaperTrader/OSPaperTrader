@@ -1,31 +1,29 @@
 const express = require("express");
 const path = require("path");
+const mainController = require("./controller.js");
 const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+const PORT = process.env.PORT || 3000;
+// const auth = require('./auth/index')
 
 const app = express();
-const stock = require("../routes/stock");
 
-const port = process.env.PORT || 3000;
+const DIST_DIR = path.join(__dirname, "../dist");
+const HTML_FILE = path.join(DIST_DIR, "index.html");
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(express.static(DIST_DIR));
 
-app.use(express.static(path.resolve(__dirname, '../src')));
+// mounting the auth router. any request that come to auth will be sent to the auth router
+app.get("/auth", (req, res) => {
+  res.send('bla bla')
+});
 
-const mockResponse = {
-  foo: "bar",
-  bar: "foo"
-};
+app.get("/api/:username", mainController.getCCData, (req, res) => {
+  res.json(res.locals.data);
+});
 
-
-
-app.use("/api/stock", stock);
-
-app.get("/api", (req, res) => {
-  res.send(mockResponse);
+app.get("/watchListData/:id", mainController.getWatchListData, (req, res) => {
+  res.sendFile(res.locals.data);
 });
 
 
@@ -33,13 +31,13 @@ app.get("/", (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
-app.get('/login', (req, res) => {
-  return res.status(200).sendFile(path.resolve(__dirname, '../views/login.html'))
-});
+// app.get('/login', (req, res) => {
+//   return res.status(200).sendFile(path.resolve(__dirname, '../views/login.html'))
+// });
 
-app.get('/signup', (req, res) => {
-  return res.status(200).sendFile(path.resolve(__dirname, '../views/signup.html'))
-});
+// app.get('/signup', (req, res) => {
+//   return res.status(200).sendFile(path.resolve(__dirname, '../views/signup.html'))
+// });
 
 
 app.use('*', (req, res) => { 
@@ -52,6 +50,6 @@ app.use((err, req, res, next) => {
   // throw new error(res.locals.error); 
 });
 
-app.listen(port, function () {
-  console.log("App listening on port: " + port);
+app.listen(PORT, () => {
+  console.log(`App listening on PORT: ${PORT}`);
 });
