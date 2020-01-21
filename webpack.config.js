@@ -7,10 +7,6 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 module.exports = {
   entry: "./src/index.js",
-  output: {
-    path: path.join(__dirname, "dist"),
-    filename: "[name].js"
-  },
   plugins: [htmlPlugin, new CleanWebpackPlugin()],
   module: {
     rules: [
