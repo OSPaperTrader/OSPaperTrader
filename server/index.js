@@ -13,8 +13,8 @@ const HTML_FILE = path.join(DIST_DIR, "index.html");
 app.use(bodyParser.json());
 app.use(express.static(DIST_DIR));
 
-app.get("/api", mainController.getBTCData, (req, res) => {
-  res.send(res.locals.data);
+app.get("/api/:username", mainController.getCCData, (req, res) => {
+  res.json(res.locals.data);
 });
 
 app.get("/watchListData/:id", mainController.getWatchListData, (req, res) => {

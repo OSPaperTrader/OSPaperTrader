@@ -3,15 +3,21 @@ const axios = require("axios");
 
 const mainController = {};
 
-mainController.getBTCData = (req, res, next) => {
-  db.query("SELECT NOW()", (err, result) => {
-    if (err) {
-      return { log: err.stack, message: "Error executing query in getData" };
+mainController.getCCData = (req, res, next) => {
+  db.query(
+    `select * from portfolio where user_id = (select id from users where login = '${req.params.username}')`,
+    (err, result) => {
+      if (err) {
+        return next({
+          log: err.stack,
+          message: "Error executing query in getData"
+        });
+      }
+      console.log("result.rows", result.rows);
+      res.locals.data = result.rows;
+      return next();
     }
-    console.log("result", result.rows);
-    res.locals.data = result.rows;
-  });
-  return next();
+  );
 };
 
 mainController.getWatchListData = (req, res, next) => {
