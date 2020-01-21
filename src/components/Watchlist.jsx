@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 class Watchlist extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container-inner">
         <h1>Watchlist</h1>
       </div>
     );

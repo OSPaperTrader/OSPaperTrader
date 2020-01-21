@@ -1,10 +1,17 @@
-import React from 'react';
+import React from "react";
+import Watchlist from "./Watchlist.jsx";
+import Portfolio from "./Portfolio.jsx";
+import Navbar from "./Navbar.jsx";
 
 class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>Dashboard</h1>
+        <Navbar />
+        <div className="container-outer">
+          <Watchlist />
+          <Portfolio />
+        </div>
       </div>
     );
   }

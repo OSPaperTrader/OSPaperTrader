@@ -18,7 +18,6 @@ Cool Grey 10: #BCCAD9
 Cool Grey 11: #C5D3E2
  */
 
-
 /* Organizational */
 * {
   padding: 0;
@@ -146,7 +145,6 @@ td {
   text-align: left;
 }
 
-
 /* Button (General Use) */
 
 button {
@@ -212,3 +210,41 @@ button {
   background-color: #5c6a79;
 }
 
+// Navbar
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: rgb(9, 13, 19);
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.nav-logo {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 4px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #9caab9;
+  color: white;
+}
