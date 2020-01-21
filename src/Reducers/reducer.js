@@ -1,4 +1,4 @@
-import * as type from '../Actions/actionTypes.js';
+import { INCREMENT } from '../Actions/actionTypes.js';
 
 const initialState = {
   value: 0,
@@ -7,9 +7,9 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case type.INCREMENT:
+    case INCREMENT:
       return ({
-        ...state, value: action.payload,
+        value: state.value + action.payload
       });
     default: return { ...state };
   }
