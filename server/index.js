@@ -17,6 +17,7 @@ app.get("/api", mainController.getBTCData, (req, res) => {
   res.send(res.locals.data);
 });
 
+// app.get('/watchListData/:id' - GET request to AlphaVantage server with id=stock symbol
 app.get("/watchListData/:id", mainController.getWatchListData, (req, res) => {
   res.sendFile(res.locals.data);
 });

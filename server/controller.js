@@ -14,6 +14,8 @@ mainController.getBTCData = (req, res, next) => {
   return next();
 };
 
+
+// get data for stock symbol with req.params.id
 mainController.getWatchListData = (req, res, next) => {
   axios
     .get(
