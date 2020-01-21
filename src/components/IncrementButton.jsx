@@ -1,7 +1,7 @@
 import React from 'react';
-import { increment } from '../Actions/actionCreator';
-import { INCREMENT } from '../Actions/actionTypes';
 import { connect } from 'react-redux';
+import { increment } from '../Actions/actionCreator';
+import MainContainer from './MainContainer.jsx';
 
 class IncrementButton extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class IncrementButton extends React.Component {
         </button>
         {/* <button onClick={increment}>Increment</button> */}
         <h1>{this.props.value}</h1>
+        <MainContainer />
       </div>
     );
   }
@@ -27,7 +28,7 @@ class IncrementButton extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    value: state.value
+    value: state.value,
   };
 }
 
@@ -37,5 +38,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  null,
 )(IncrementButton);
