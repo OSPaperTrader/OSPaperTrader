@@ -1,9 +1,9 @@
-import React from 'react';
-import Watchlist from './Watchlist.jsx';
-import Portfolio from './Portfolio.jsx';
-import Navbar from './Navbar.jsx';
-import { getPortfolio } from '../Actions/actionCreator';
-import { connect } from 'react-redux';
+import React from "react";
+import Watchlist from "./Watchlist.jsx";
+import Portfolio from "./Portfolio.jsx";
+import Navbar from "./Navbar.jsx";
+import { getPortfolio } from "../Actions/actionCreator";
+import { connect } from "react-redux";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -15,18 +15,19 @@ class Dashboard extends React.Component {
         <Navbar />
         <div className="container-outer">
           <Watchlist watchlist={this.props.watchlist} />
-          <button
-            onClick={() => {
-              this.props.dispatch(getPortfolio(this.props.email));
-            }}
-          >
-            Get Portfolio
-          </button>
+
           <Portfolio
             cash={this.props.cash}
             watchlistData={this.props.watchlist}
             transData={this.props.portfolio.transactions}
           />
+          <button
+            onClick={() => {
+              this.props.dispatch(getPortfolio(this.props.email));
+            }}
+          >
+            Reload Portfolio
+          </button>
         </div>
       </div>
     );
@@ -42,7 +43,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

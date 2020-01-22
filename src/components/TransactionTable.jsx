@@ -1,16 +1,17 @@
-import React from 'react';
-import TransactionRow from './TransactionRow.jsx';
+import React from "react";
+import TransactionRow from "./TransactionRow.jsx";
 
 class TransactionTable extends React.Component {
   render() {
+    console.log("Here In Transaction Table");
     let stockDataArray = [];
     let rowArray = [];
     let currPriceCache = {};
-    this.props.watchlistData['Stock Quotes'].forEach(el => {
-      currPriceCache[el['1. symbol']] = el['2. price'];
+    this.props.watchlistData["Stock Quotes"].forEach(el => {
+      currPriceCache[el["1. symbol"]] = el["2. price"];
     });
 
-    console.log('cache', currPriceCache);
+    console.log("cache", currPriceCache);
 
     if (this.props.transData[0]) {
       stockDataArray = this.props.transData;

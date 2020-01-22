@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 class TransactionRow extends React.Component {
   render() {
-    console.log('Transactionrow:  ', this.props.stockData);
+    console.log("Transaction Row:  ", this.props.stockData);
     return (
       <div>
         <p className="stockData">
