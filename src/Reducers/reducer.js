@@ -1,7 +1,8 @@
 import {
   SET_WATCHLIST,
   SET_PORTFOLIO,
-  GET_PORTFOLIO
+  GET_PORTFOLIO,
+  ADD_TO_WATCHLIST
 } from '../Actions/actionTypes.js';
 
 const initialState = {
@@ -36,11 +37,21 @@ const initialState = {
     transactions: []
   },
   email: 'user1@gmail.com',
-  cash: 10000
+  cash: 10000,
+  symbolList: ['MSFT', 'AAPL', 'FB']
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_TO_WATCHLIST:
+      let symbolList = state.symbolList.slice();
+      if (typeof action.payload === 'string') {
+        symbolList.push(action.payload);
+      }
+      return {
+        ...state,
+        symbolList
+      };
     case SET_WATCHLIST:
       return {
         ...state,

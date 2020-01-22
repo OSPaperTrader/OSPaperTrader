@@ -10,11 +10,12 @@ const repeat = ms => new Promise(res => setInterval(res, ms));
 
 function* getWatchlist() {
   console.log('getWatchlist');
-  // const watchedItems = ['BTC', 'ETH', 'DOGE'];
   // const APIKEY = '3UQDU5BEQNBQWB71';
-
+  const state = yield select();
+  
+  const watchedItems = state.symbolList;
   const list = yield fetch(
-    `https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&apikey=${APIKEY}&symbols=MSFT,AAPL,FB`
+    `https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&apikey=${APIKEY}&symbols=${watchedItems.join(',')}`
   ).then(response => {
     response.json();
   });

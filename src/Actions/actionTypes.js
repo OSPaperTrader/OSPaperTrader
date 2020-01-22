@@ -1,3 +1,4 @@
 export const SET_WATCHLIST = 'SET_WATCHLIST';
 export const SET_PORTFOLIO = 'SET_PORTFOLIO';
 export const GET_PORTFOLIO = 'GET_PORTFOLIO';
+export const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST';

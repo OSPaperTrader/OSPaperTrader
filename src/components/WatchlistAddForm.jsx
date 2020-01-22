@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+import { connect } from 'react-redux';
+import { addToWatchlist } from '../Actions/actionCreator';
 
 class WatchlistAddForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: '' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,7 +16,8 @@ class WatchlistAddForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert("A new stock was submitted: " + this.state.value);
+    alert('A new stock was submitted: ' + this.state.value);
+    this.props.dispatch(addToWatchList(this.state.value));
     event.preventDefault();
   }
 
@@ -35,4 +38,7 @@ class WatchlistAddForm extends React.Component {
   }
 }
 
-export default WatchlistAddForm;
+export default connect(
+  null,
+  null
+)(WatchlistAddForm);
