@@ -1,31 +1,24 @@
 const express = require("express");
 const path = require("path");
+const mainController = require("./controller.js");
+
+const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
 
 const app = express();
-const stock = require("../routes/stock");
 
-const port = process.env.PORT || 3000;
+const DIST_DIR = path.join(__dirname, "../dist");
+const HTML_FILE = path.join(DIST_DIR, "index.html");
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(express.static(DIST_DIR));
 
-app.use(express.static(path.resolve(__dirname, '../src')));
+app.get("/api/:username", mainController.getCCData, (req, res) => {
+  res.json(res.locals.data);
+});
 
-const mockResponse = {
-  foo: "bar",
-  bar: "foo"
-};
-
-
-
-app.use("/api/stock", stock);
-
-app.get("/api", (req, res) => {
-  res.send(mockResponse);
+app.get("/watchListData/:id", mainController.getWatchListData, (req, res) => {
+  res.sendFile(res.locals.data);
 });
 
 
@@ -52,6 +45,6 @@ app.use((err, req, res, next) => {
   // throw new error(res.locals.error); 
 });
 
-app.listen(port, function () {
-  console.log("App listening on port: " + port);
+app.listen(PORT, () => {
+  console.log(`App listening on PORT: ${PORT}`);
 });

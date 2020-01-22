@@ -1,10 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./styles.scss";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'babel-polyfill';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import reducers from './Reducers/reducer';
+import './styles.scss';
 import App from './App';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { helloSaga } from './sagas/sagas';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// const store = createStore(reducers, composeWithDevTools())
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
+sagaMiddleware.run(helloSaga);
 
-
-
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
