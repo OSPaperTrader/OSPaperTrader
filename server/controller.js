@@ -3,8 +3,8 @@ const axios = require('axios');
 
 const mainController = {};
 
-mainController.getTransData = (req, res, next) => {
-  db.query(
+mainController.getTransData = async (req, res, next) => {
+  await db.query(
     `select cash from users where email = '${req.params.email}'`,
     (err, result) => {
       if (err) {
@@ -18,7 +18,7 @@ mainController.getTransData = (req, res, next) => {
     }
   );
 
-  db.query(
+  await db.query(
     `select * from transactions where user_id = (select id from users where email = '${req.params.email}')`,
     (err, result) => {
       if (err) {
