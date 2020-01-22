@@ -1,14 +1,17 @@
-import { INCREMENT } from '../Actions/actionTypes.js';
+import { SET_WATCHLIST } from '../Actions/actionTypes.js';
 
 const initialState = {
-  value: 0
+  watchlist: {},
+  portfolio: {},
+  username: {}
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT:
+    case SET_WATCHLIST:
       return {
-        value: state.value + action.payload
+        ...state,
+        watchlist: action.payload
       };
     default:
       return { ...state };
