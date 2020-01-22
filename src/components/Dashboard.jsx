@@ -1,31 +1,20 @@
-import React from "react";
-import Watchlist from "./Watchlist.jsx";
-import Portfolio from "./Portfolio.jsx";
-import Navbar from "./Navbar.jsx";
+import React from 'react';
+import Watchlist from './Watchlist.jsx';
+import Portfolio from './Portfolio.jsx';
+import Navbar from './Navbar.jsx';
+import { connect } from 'react-redux';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      watchListEntries: [
-        {
-          symbol: "XYZ",
-          name: "Xtreme Yoga Zone",
-          currentPrice: 99.87
-        },
-        
-      ],
-      portfolioEntries: [
-        { name: "AAPL", numOfShares: 59, buyingPrice: 300, dateBought: 200116 }
-      ]
-    };
   }
   render() {
+    // console.log('dashboard props', this.props);
     return (
       <div>
         <Navbar />
         <div className="container-outer">
-          <Watchlist />
+          <Watchlist watchlist={this.props.watchlist} />
           <Portfolio />
         </div>
       </div>
@@ -33,4 +22,15 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+  return {
+    watchlist: state.watchlist,
+    portfolio: state.portfolio,
+    username: state.username
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Dashboard);

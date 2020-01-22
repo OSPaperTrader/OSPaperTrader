@@ -1,1 +1,2 @@
-export const INCREMENT = 'INCREMENT';
+export const SET_WATCHLIST = 'SET_WATCHLIST';
+export const SET_PORTFOLIO = 'SET_PORTFOLIO';
