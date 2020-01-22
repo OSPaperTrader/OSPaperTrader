@@ -1,5 +1,5 @@
 import React from "react";
-import Row from "./Row.jsx";
+import RowPort from "./RowPort.jsx";
 
 class Table extends React.Component {
   render() {
@@ -7,7 +7,7 @@ class Table extends React.Component {
     let rowArray = [];
     if (stockDataArray) {
       rowArray = stockDataArray.map((el, index) => {
-        return <Row stockData={el} key={index} />;
+        return <RowPort stockData={el} key={index} />;
       });
     }
     return (
@@ -16,6 +16,7 @@ class Table extends React.Component {
         <table style={{ marginTop: 20 }}>
           <thead>
             <tr>
+              <th>Stock Name</th>
               <th>Symbol</th>
               <th>Current Price</th>
               <th colSpan="2">Volume</th>
@@ -28,4 +29,4 @@ class Table extends React.Component {
   }
 }
 
-export default Table;
+export default TablePort;

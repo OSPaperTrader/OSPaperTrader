@@ -11,7 +11,6 @@ class Watchlist extends React.Component {
     console.log(this.props.watchlist);
     return (
       <div className="container-inner">
-        <h2>Watchlist</h2>
         <Table watchlist={this.props.watchlist} />
         <WatchlistAddForm />
       </div>

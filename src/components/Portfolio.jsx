@@ -1,10 +1,17 @@
 import React from "react";
+import TablePort from "./Table.jsx";
 
 class Portfolio extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    // console.log(this.props.watchlist);
     return (
       <div className="container-inner">
-        <h2>Portfolio</h2>
+        <h1>Portfolio</h1>
+        {/* <TablePort watchlist={this.props.watchlist} /> */}
       </div>
     );
   }
