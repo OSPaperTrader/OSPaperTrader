@@ -1,8 +1,14 @@
 import React from 'react';
 import TransactionTable from './TransactionTable.jsx';
+import TablePort from './Table.jsx';
 
 class Portfolio extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    // console.log(this.props.watchlist);
     return (
       <div className="container-inner">
         <h1>Portfolio</h1>
@@ -11,6 +17,7 @@ class Portfolio extends React.Component {
           transData={this.props.transData}
           watchlistData={this.props.watchlistData}
         />
+        {/* <TablePort watchlist={this.props.watchlist} /> */}
       </div>
     );
   }
