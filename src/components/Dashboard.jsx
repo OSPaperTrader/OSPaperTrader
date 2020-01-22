@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
             Get Portfolio
           </button>
           <Portfolio
-            // cash={this.props.cash}
+            cash={this.props.cash}
             watchlistData={this.props.watchlist}
             transData={this.props.portfolio.transactions}
           />
@@ -37,7 +37,7 @@ function mapStateToProps(state) {
   return {
     watchlist: state.watchlist,
     portfolio: state.portfolio,
-    // cash: state.cash,
+    cash: state.cash,
     username: state.username
   };
 }
