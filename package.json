@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon server/index.js",
-    "build": "webpack --mode production",
+    "build": "webpack --production",
     "watch": "webpack --watch",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -16,8 +16,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "axios": "^0.19.1",
+    "babel-polyfill": "^6.26.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
