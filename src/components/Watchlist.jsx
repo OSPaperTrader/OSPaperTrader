@@ -1,5 +1,6 @@
-import React from 'react';
-import Table from './Table.jsx';
+import React from "react";
+import Table from "./Table.jsx";
+import WatchlistAddForm from "./WatchlistAddForm.jsx";
 
 class Watchlist extends React.Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class Watchlist extends React.Component {
     console.log(this.props.watchlist);
     return (
       <div className="container-inner">
-        <h1>watch</h1>
         <Table watchlist={this.props.watchlist} />
+        <WatchlistAddForm />
       </div>
     );
   }
