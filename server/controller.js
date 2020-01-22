@@ -1,4 +1,4 @@
-const db = require("../models/stocks-db.js");
+const db = require("./models/stocks-db.js");
 const axios = require("axios");
 
 const mainController = {};
