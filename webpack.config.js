@@ -10,9 +10,10 @@ module.exports = {
   mode: 'development',
   devServer: {
     compress: true,
-    proxy: {
-      '/api': 'http://localhost:3000',
+    proxy:  {
+      '/': 'http://localhost:3000',
     },
+    port: 8080
   },
   plugins: [htmlPlugin, new CleanWebpackPlugin()],
   module: {

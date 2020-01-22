@@ -3,7 +3,7 @@ const path = require("path");
 const mainController = require("./controller.js");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
-// const auth = require('./auth/index')
+const auth = require('./auth/index')
 
 const app = express();
 
@@ -14,9 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static(DIST_DIR));
 
 // mounting the auth router. any request that come to auth will be sent to the auth router
-app.get("/auth", (req, res) => {
-  res.send('bla bla')
-});
+app.use("/auth", auth)
 
 app.get("/api/:username", mainController.getCCData, (req, res) => {
   res.json(res.locals.data);
@@ -39,15 +37,24 @@ app.get("/", (req, res) => {
 //   return res.status(200).sendFile(path.resolve(__dirname, '../views/signup.html'))
 // });
 
-
-app.use('*', (req, res) => { 
-  res.status(404).send('Not found'); 
+// catch 404 and forward to error handler
+app.use((req, res, next) => { 
+  // res.status(404).send('Not found'); 
+  const err = new Error('Not found')
+  err.status = 404;
+  next(err);
 });
 
 app.use((err, req, res, next) => { 
-  console.error(res.locals.error)
-  res.end()
+  // console.error(res.locals.error)
+  // res.end()
   // throw new error(res.locals.error); 
+  res.status(err.status || res.statusCode || 500);
+  res.json({
+    message: err.message,
+    // determines whether or not you are in development mode and decides to show the stack trace
+    error: req.app.get('env') === 'development' ? err : {}
+  })
 });
 
 app.listen(PORT, () => {
