@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from './Table.jsx';
 
 class Watchlist extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Watchlist extends React.Component {
     console.log(this.props.watchlist);
     return (
       <div className="container-inner">
-        <h1>{JSON.stringify(this.props.watchlist)}</h1>
+        <h1>watch</h1>
+        <Table watchlist={this.props.watchlist} />
       </div>
     );
   }

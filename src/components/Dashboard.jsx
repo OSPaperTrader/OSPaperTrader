@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
     super(props);
   }
   render() {
-    console.log('dashboard props', this.props);
+    // console.log('dashboard props', this.props);
     return (
       <div>
         <Navbar />
