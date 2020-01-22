@@ -1,4 +1,8 @@
-import { SET_WATCHLIST, SET_PORTFOLIO } from '../Actions/actionTypes.js';
+import {
+  SET_WATCHLIST,
+  SET_PORTFOLIO,
+  GET_PORTFOLIO
+} from '../Actions/actionTypes.js';
 
 const initialState = {
   watchlist: {
@@ -29,9 +33,10 @@ const initialState = {
     ]
   },
   portfolio: {
-    transactions: {}
+    transactions: []
   },
-  username: {}
+  email: 'user1@gmail.com',
+  cash: 10000
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,8 +50,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         portfolio: {
-          transactions: action.payload
-        }
+          transactions: action.payload.transactions
+        },
+        cash: action.payload.cash.cash
+      };
+    case GET_PORTFOLIO:
+      return {
+        ...state
       };
     default:
       return { ...state };

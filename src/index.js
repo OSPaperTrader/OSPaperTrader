@@ -8,7 +8,7 @@ import reducers from './Reducers/reducer';
 import './styles.scss';
 import App from './App';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { helloSaga, getWatchlist } from './sagas/sagas';
+import { mainSaga } from './sagas/sagas';
 
 // const store = createStore(reducers, composeWithDevTools())
 const sagaMiddleware = createSagaMiddleware();
@@ -17,7 +17,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(getWatchlist);
+sagaMiddleware.run(mainSaga);
 
 ReactDOM.render(
   <Provider store={store}>

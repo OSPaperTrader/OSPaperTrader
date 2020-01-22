@@ -17,7 +17,8 @@ app.use(express.static(DIST_DIR));
 app.use('/auth', auth);
 
 app.get('/api/:email', mainController.getTransData, (req, res) => {
-  res.json(res.locals.data);
+  console.log('res.locals.data index.js', res.locals.data);
+  res.json({ transactions: res.locals.data, cash: res.locals.cash });
 });
 
 app.get('/watchListData/:id', mainController.getWatchListData, (req, res) => {
