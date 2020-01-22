@@ -3,9 +3,9 @@ const axios = require("axios");
 
 const mainController = {};
 
-mainController.getCCData = (req, res, next) => {
+mainController.getTransData = (req, res, next) => {
   db.query(
-    `select * from portfolio where user_id = (select id from users where login = '${req.params.username}')`,
+    `select * from transactions where user_id = (select id from users where email = '${req.params.email}')`,
     (err, result) => {
       if (err) {
         return next({

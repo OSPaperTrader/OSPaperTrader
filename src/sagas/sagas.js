@@ -10,19 +10,12 @@ const repeat = ms => new Promise(res => setInterval(res, ms));
 export function* getWatchlist() {
   console.log('getWatchlist');
   // const watchedItems = ['BTC', 'ETH', 'DOGE'];
-  const APIKEY = '3UQDU5BEQNBQWB71'
+  // const APIKEY = '3UQDU5BEQNBQWB71'
 
   const list = yield fetch(
     `https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&apikey=${APIKEY}&symbols=MSFT,AAPL,FB`
   ).then(response => response.json());
   // yield repeat(20000);
-  // const btc = yield fetch(
-  //   'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=usd&apikey=8K5Q5R03P17L0XSN'
-  // ).then(response => response.json());
-  // const eth = yield fetch(
-  //   'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=ETH&to_currency=usd&apikey=8K5Q5R03P17L0XSN'
-  // ).then(response => response.json());
-  // list.push(btc, eth);
 
   yield put(setWatchlist(list));
 }

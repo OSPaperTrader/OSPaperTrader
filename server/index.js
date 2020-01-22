@@ -13,7 +13,7 @@ const HTML_FILE = path.join(DIST_DIR, "index.html");
 app.use(bodyParser.json());
 app.use(express.static(DIST_DIR));
 
-app.get("/api/:username", mainController.getCCData, (req, res) => {
+app.get("/api/:email", mainController.getTransData, (req, res) => {
   res.json(res.locals.data);
 });
 
