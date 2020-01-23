@@ -11,7 +11,7 @@ class Portfolio extends React.Component {
     // console.log(this.props.watchlist);
     return (
       <div className="container-inner">
-        <h2>Watchlist</h2>
+        <h2>Portfolio</h2>
         <h2>Cash: {this.props.cash}</h2>
         <TransactionTable
           transData={this.props.transData}
