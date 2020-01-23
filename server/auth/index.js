@@ -23,14 +23,26 @@ const validUser = user => {
   return validEmail && validPassword;
 }
 
+const setUserIdCookie = (req, res, id) => {
+  res.cookie('user_id', id, {
+    httpOnly: true,
+    //when you are in production make it true
+    secure: req.app.get('env') != 'development', 
+    signed: true
+  });
+}
+
 // post request with user infromation to the server
 router.post('/signup', (req, res, next) => {
+  console.log('coming', req.body)
   const user = {
     firstName: req.body.firstname,
     lastName: req.body.lastname,
     email: req.body.email,
     password: req.body.password
   }
+
+  console.log('user', user)
 
   if(validUser(user)) {
     //if this user is valid, we want to check if the user is unique to our database
@@ -49,7 +61,10 @@ router.post('/signup', (req, res, next) => {
                     db.query(`select * from users where email ='${user.email}'`)
                       .then( id => {
                         console.log(id.rows[0].id)
-                        //cookie should be made her 
+                        //cookie should be made here
+                        //we can redirect
+                        // setUserIdCookie(req, res, id.row[0].id);
+
                         res.json({
                           id: id.rows[0].id,
                           message: 'Successful Signup'
@@ -114,7 +129,7 @@ router.post('/login', (req, res, next) => {
   //       req.session.user = user.email;
   //       res.redirect('/');
   //     } else {
-  //       res.redirect('signup');
+  //       res.redirect('/signup');
   //     }
   //   } else {
   //       res.redirect('/signin');
