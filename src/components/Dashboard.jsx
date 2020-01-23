@@ -25,11 +25,6 @@ class Dashboard extends React.Component {
             <div className="container-outer">
               <Watchlist watchlist={this.props.watchlist} />
 
-              <Portfolio
-                cash={this.props.cash}
-                watchlistData={this.props.watchlist}
-                transData={this.props.portfolio.transactions}
-              />
               <button
                 onClick={() => {
                   this.props.dispatch(updateWatchlist(this.props.email));
@@ -51,6 +46,13 @@ class Dashboard extends React.Component {
               >
                 Get Portfolio Data
               </button>
+
+              <Portfolio
+                cash={this.props.cash}
+                watchlistData={this.props.watchlist}
+                transData={this.props.portfolio.transactions}
+              />
+
             </div>
           </Route>
           <Route path="/signup">
