@@ -21,9 +21,25 @@ app.get('/api/:email', mainController.getTransData, (req, res) => {
   res.json({ transactions: res.locals.data, cash: res.locals.cash });
 });
 
+app.post(
+  '/watchListData/:email/:symbol',
+  mainController.addWatchlistItem,
+  (req, res) => {
+    res.json(res.locals.data);
+  }
+);
+
 app.get('/watchListData/:id', mainController.getWatchListData, (req, res) => {
   res.sendFile(res.locals.data);
 });
+
+app.delete(
+  '/watchListData/:email/:delete',
+  mainController.deleteWatchlistItem,
+  (req, res) => {
+    res.json(res.locals.delete);
+  }
+);
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'));
