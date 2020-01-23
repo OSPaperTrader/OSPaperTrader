@@ -1,12 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import Watchlist from "./Watchlist.jsx";
-import Portfolio from "./Portfolio.jsx";
-import Navbar from "./Navbar.jsx";
-import Signup from "./Signup.jsx";
-import Login from "./Login.jsx";
-import { getPortfolio } from "../Actions/actionCreator";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Watchlist from './Watchlist.jsx';
+import Portfolio from './Portfolio.jsx';
+import Navbar from './Navbar.jsx';
+import Signup from './Signup.jsx';
+import Login from './Login.jsx';
+import {
+  getPortfolio,
+  getWatchlist,
+  updateWatchlist
+} from '../Actions/actionCreator';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -21,11 +25,20 @@ class Dashboard extends React.Component {
             <div className="container-outer">
               <Watchlist watchlist={this.props.watchlist} />
 
-              <Portfolio
-                cash={this.props.cash}
-                watchlistData={this.props.watchlist}
-                transData={this.props.portfolio.transactions}
-              />
+              <button
+                onClick={() => {
+                  this.props.dispatch(updateWatchlist(this.props.email));
+                }}
+              >
+                Update Watchlist
+              </button>
+              <button
+                onClick={() => {
+                  this.props.dispatch(getWatchlist());
+                }}
+              >
+                Get Watchlist
+              </button>
               <button
                 onClick={() => {
                   this.props.dispatch(getPortfolio(this.props.email));
@@ -33,6 +46,13 @@ class Dashboard extends React.Component {
               >
                 Get Portfolio Data
               </button>
+
+              <Portfolio
+                cash={this.props.cash}
+                watchlistData={this.props.watchlist}
+                transData={this.props.portfolio.transactions}
+              />
+
             </div>
           </Route>
           <Route path="/signup">

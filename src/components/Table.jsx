@@ -19,7 +19,8 @@ class Table extends React.Component {
               <th> </th>
               <th>Symbol</th>
               <th>Current Price</th>
-              <th colSpan="2">Volume</th>
+              <th >Volume</th>
+              <th >QTY</th>
             </tr>
           </thead>
           <tbody>{rowArray}</tbody>

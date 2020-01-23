@@ -31,11 +31,50 @@ app.get('/', (req, res) => {
 
 app.get('/api/:email', mainController.getTransData, (req, res) => {
   console.log('res.locals.data index.js', res.locals.data);
-  res.json({ transactions: res.locals.data, cash: res.locals.cash });
+  res.json({
+    transactions: res.locals.data,
+    cash: res.locals.cash
+  });
 });
 
-app.get('/watchListData/:id', mainController.getWatchListData, (req, res) => {
-  res.sendFile(res.locals.data);
+app.post(
+  '/watchListData/:email/:symbol',
+  mainController.addWatchlistItem,
+  (req, res) => {
+    res.json(res.locals.data);
+  }
+);
+
+app.get('/watchlistData/:email', mainController.getWatchListData, (req, res) => {
+  res.json(res.locals.data);
+});
+
+app.delete(
+  '/watchListData/:email/:delete',
+  mainController.deleteWatchlistItem,
+  (req, res) => {
+    res.json(res.locals.delete);
+  }
+);
+
+app.post(
+  '/portfolio/buy/:email/:symbol',
+  mainController.buySecurity,
+  (req, res) => {
+    res.json(res.locals.data);
+  }
+);
+
+app.post(
+  '/portfolio/sell/:email/:symbol',
+  mainController.sellSecurity,
+  (req, res) => {
+    res.json(res.locals.data);
+  }
+);
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
 // app.get('/login', (req, res) => {
