@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class CreatePopup extends React.Component {
+class Login extends React.Component {
   constructor() {
     super();
     this.onSubmit = this.onSubmit.bind(this)
@@ -38,15 +38,9 @@ class CreatePopup extends React.Component {
         <div className="flex">
           <h3>Log in</h3>
           <form className="flex" onSubmit={this.onSubmit}>
-            <div className="flex">
-              <label>Email</label>
-              <input id="email" aria-label="email" name="email" type="email" placeholder="email" required/>
-            </div>
-            <div className="flex">
-              <label>Password</label>
-              <input id="password" aria-label="password" name="password" type="password" placeholder="password" required/>
-            </div>
-            <button name="submit" type='submit' value="Submit">Login</button>
+              <input id="email" aria-label="email" name="email" type="email" placeholder="Email" required/><br/>
+              <input id="password" aria-label="password" name="password" type="password" placeholder="Password" required/><br/><br/>
+            <button name="submit" type='submit' value="Submit">Submit</button>
           </form>
         </div>
       </section>
@@ -54,4 +48,4 @@ class CreatePopup extends React.Component {
   }
 }
 
-export default CreatePopup;
+export default Login;

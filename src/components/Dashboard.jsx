@@ -5,6 +5,7 @@ import Watchlist from "./Watchlist.jsx";
 import Portfolio from "./Portfolio.jsx";
 import Navbar from "./Navbar.jsx";
 import Signup from './Signup.jsx'
+import Login from './Login.jsx'
 import { getPortfolio } from '../Actions/actionCreator';
 
 
@@ -36,6 +37,9 @@ class Dashboard extends React.Component {
           </Route>
           <Route path='/signup'>
             <Signup/>
+          </Route>
+          <Route path='/login'>
+            <Login/>
           </Route>
         </Router>
       </div>
