@@ -5,7 +5,8 @@ import {
   ADD_TO_WATCHLIST,
   BUY_SECURITY,
   GET_WATCHLIST,
-  SET_SYMBOLLIST
+  SET_SYMBOLLIST,
+  SET_EMAIL
 } from '../Actions/actionTypes.js';
 
 const initialState = {
@@ -15,33 +16,14 @@ const initialState = {
       '2. Notes': 'IEX Real-Time',
       '3. Time Zone': 'US/Eastern'
     },
-    'Stock Quotes': [
-      {
-        '1. symbol': 'MSFT',
-        '2. price': '166.4550',
-        '3. volume': '7475901',
-        '4. timestamp': '2020-01-22 11:31:22'
-      },
-      {
-        '1. symbol': 'AAPL',
-        '2. price': '318.3800',
-        '3. volume': '9260215',
-        '4. timestamp': '2020-01-22 11:30:51'
-      },
-      {
-        '1. symbol': 'FB',
-        '2. price': '221.8700',
-        '3. volume': '5495525',
-        '4. timestamp': '2020-01-22 11:26:17'
-      }
-    ]
+    'Stock Quotes': []
   },
   portfolio: {
     transactions: []
   },
-  email: 'user1@gmail.com',
+  email: 'cedrictheo@gmail.com',
   cash: 10000,
-  symbolList: ['MSFT', 'AAPL', 'FB']
+  symbolList: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -54,6 +36,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         symbolList: action.payload
+      };
+    case SET_EMAIL:
+      return {
+        ...state,
+        email: action.payload
       };
     case ADD_TO_WATCHLIST:
       console.log('this is action ', action.payload);

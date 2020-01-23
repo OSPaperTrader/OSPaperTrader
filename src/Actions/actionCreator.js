@@ -6,11 +6,17 @@ import {
   BUY_SECURITY,
   GET_WATCHLIST,
   UPDATE_WATCHLIST,
-  SET_SYMBOLLIST
+  SET_SYMBOLLIST,
+  SET_EMAIL
 } from './actionTypes.js';
 
 export const setWatchlist = payload => ({
   type: SET_WATCHLIST,
+  payload: payload
+});
+
+export const setEmail = payload => ({
+  type: SET_EMAIL,
   payload: payload
 });
 

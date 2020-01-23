@@ -32,7 +32,6 @@ class Row extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
           ></input>
-          <button>X</button>
         </td>
         {/* <td>{this.props.stockData['1. symbol']}</td>
         <td>{this.props.stockData['2. price']}</td>

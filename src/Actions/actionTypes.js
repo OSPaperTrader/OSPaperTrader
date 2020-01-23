@@ -6,3 +6,4 @@ export const GET_WATCHLIST = 'GET_WATCHLIST';
 export const BUY_SECURITY = 'BUY_SECURITY';
 export const UPDATE_WATCHLIST = 'UPDATE_WATCHLIST';
 export const SET_SYMBOLLIST = 'SET_SYMBOLLIST';
+export const SET_EMAIL = 'SET_EMAIL';
