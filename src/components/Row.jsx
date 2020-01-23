@@ -4,6 +4,17 @@ class Row extends React.Component {
   render() {
     return (
       <tr>
+        <td>
+          <button
+            onClick={() =>
+              console.log(
+                "Remove Button Clicked for " + this.props.stockData["1. symbol"]
+              )
+            }
+          >
+            X
+          </button>
+        </td>
         <td>{this.props.stockData["1. symbol"]}</td>
         <td>{this.props.stockData["2. price"]}</td>
         <td>{this.props.stockData["3. volume"]}</td>
@@ -16,17 +27,6 @@ class Row extends React.Component {
             }
           >
             Buy
-          </button>
-        </td>
-        <td>
-          <button
-            onClick={() =>
-              console.log(
-                "Remove Button Clicked for " + this.props.stockData["1. symbol"]
-              )
-            }
-          >
-            Remove
           </button>
         </td>
       </tr>

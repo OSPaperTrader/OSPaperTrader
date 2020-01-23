@@ -57,7 +57,7 @@ h4 {
 }
 
 .container-outer {
-  width: 50%;
+  width: 35%;
   padding: 10px;
   margin: 10px auto 10px;
   /* background color 5 */
@@ -66,7 +66,7 @@ h4 {
 }
 
 .container-inner {
-  width: 75%;
+  width: 95%;
   margin: 0 auto 5px;
   /* background color 2 */
   background-color: #3c4a59;
@@ -173,8 +173,6 @@ button:active {
 .h-form {
   width: 75%;
   margin: 0 auto;
-  /* border color 9 */
-  // border: 1px solid #acbac9;
   padding: 7px;
   box-sizing: border-box;
 }
@@ -242,7 +240,7 @@ button:active {
   float: right;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 8px 16px;
   text-decoration: none;
   font-size: 17px;
 }
