@@ -32,6 +32,12 @@ class Row extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
           ></input>
+          <button>X</button>
+        </td>
+        {/* <td>{this.props.stockData['1. symbol']}</td>
+        <td>{this.props.stockData['2. price']}</td>
+        <td>{this.props.stockData['3. volume']}</td> */}
+        <td>
           <button
             onClick={() => {
               this.props.dispatch(
@@ -45,17 +51,6 @@ class Row extends React.Component {
             }}
           >
             Buy
-          </button>
-        </td>
-        <td>
-          <button
-            onClick={() =>
-              console.log(
-                'Remove Button Clicked for ' + this.props.stockData['1. symbol']
-              )
-            }
-          >
-            Remove
           </button>
         </td>
       </tr>

@@ -24,6 +24,12 @@ class Dashboard extends React.Component {
             <Navbar />
             <div className="container-outer">
               <Watchlist watchlist={this.props.watchlist} />
+
+              <Portfolio
+                cash={this.props.cash}
+                watchlistData={this.props.watchlist}
+                transData={this.props.portfolio.transactions}
+              />
               <button
                 onClick={() => {
                   this.props.dispatch(updateWatchlist(this.props.email));
@@ -43,13 +49,8 @@ class Dashboard extends React.Component {
                   this.props.dispatch(getPortfolio(this.props.email));
                 }}
               >
-                Get Portfolio
+                Get Portfolio Data
               </button>
-              <Portfolio
-                cash={this.props.cash}
-                watchlistData={this.props.watchlist}
-                transData={this.props.portfolio.transactions}
-              />
             </div>
           </Route>
           <Route path="/signup">
@@ -73,7 +74,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

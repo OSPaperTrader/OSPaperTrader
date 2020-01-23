@@ -1,20 +1,31 @@
-import React from 'react';
+import React from "react";
 
 class TransactionRow extends React.Component {
   render() {
-    console.log('Transactionrow:  ', this.props.stockData);
+    console.log("Transaction row:  ", this.props.stockData);
     return (
-      <div>
-        <p className="stockData">
+      <tr>
+        <td>
           {new Date(
             Date.parse(this.props.stockData.trans_date)
           ).toLocaleDateString()}
-        </p>
-        <p className="stockData">{this.props.stockData.symbol}</p>
-        <p className="stockData">{this.props.stockData.purchased_price}</p>
-        <p className="stockData">{this.props.stockData.qty_purchased}</p>
-        <p className="stockData">{this.props.currPrice}</p>
-      </div>
+        </td>
+        <td>{this.props.stockData.symbol}</td>
+        <td>{this.props.stockData.purchased_price}</td>
+        <td>{this.props.stockData.qty_purchased}</td>
+        <td>{this.props.currPrice || "unavailable"}</td>
+        <td>
+          <button
+            onClick={() =>
+              console.log(
+                "Sell Button Clicked for " + this.props.stockData.symbol
+              )
+            }
+          >
+            Sell
+          </button>
+        </td>
+      </tr>
     );
   }
 }

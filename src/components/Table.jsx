@@ -16,6 +16,7 @@ class Table extends React.Component {
         <table style={{ marginTop: 20 }}>
           <thead>
             <tr>
+              <th> </th>
               <th>Symbol</th>
               <th>Current Price</th>
               <th colSpan="2">Volume</th>
