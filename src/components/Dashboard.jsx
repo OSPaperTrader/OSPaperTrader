@@ -1,13 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Watchlist from "./Watchlist.jsx";
-import Portfolio from "./Portfolio.jsx";
-import Navbar from "./Navbar.jsx";
-import Signup from './Signup.jsx'
-import Login from './Login.jsx'
-import { getPortfolio } from '../Actions/actionCreator';
-
+import Watchlist from './Watchlist.jsx';
+import Portfolio from './Portfolio.jsx';
+import Navbar from './Navbar.jsx';
+import Signup from './Signup.jsx';
+import Login from './Login.jsx';
+import {
+  getPortfolio,
+  getWatchlist,
+  updateWatchlist
+} from '../Actions/actionCreator';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -17,16 +20,30 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Router>
-          <Route exact path='/'>
-            <Navbar/>
+          <Route exact path="/">
+            <Navbar />
             <div className="container-outer">
               <Watchlist watchlist={this.props.watchlist} />
+              <button
+                onClick={() => {
+                  this.props.dispatch(updateWatchlist(this.props.email));
+                }}
+              >
+                Update Watchlist
+              </button>
+              <button
+                onClick={() => {
+                  this.props.dispatch(getWatchlist());
+                }}
+              >
+                Get Watchlist
+              </button>
               <button
                 onClick={() => {
                   this.props.dispatch(getPortfolio(this.props.email));
                 }}
               >
-              Get Portfolio
+                Get Portfolio
               </button>
               <Portfolio
                 cash={this.props.cash}
@@ -35,11 +52,11 @@ class Dashboard extends React.Component {
               />
             </div>
           </Route>
-          <Route path='/signup'>
-            <Signup/>
+          <Route path="/signup">
+            <Signup />
           </Route>
-          <Route path='/login'>
-            <Login/>
+          <Route path="/login">
+            <Login />
           </Route>
         </Router>
       </div>

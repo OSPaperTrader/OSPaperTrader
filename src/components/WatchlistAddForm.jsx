@@ -16,8 +16,7 @@ class WatchlistAddForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A new stock was submitted: ' + this.state.value);
-    this.props.dispatch(addToWatchList(this.state.value));
+    this.props.dispatch(addToWatchlist(this.state.value));
     event.preventDefault();
   }
 
