@@ -1,9 +1,13 @@
-import React from 'react';
-import Watchlist from './Watchlist.jsx';
-import Portfolio from './Portfolio.jsx';
-import Navbar from './Navbar.jsx';
-import { getPortfolio } from '../Actions/actionCreator';
+import React from "react";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { connect } from 'react-redux';
+import Watchlist from "./Watchlist.jsx";
+import Portfolio from "./Portfolio.jsx";
+import Navbar from "./Navbar.jsx";
+import Signup from './Signup.jsx'
+import Login from './Login.jsx'
+import { getPortfolio } from '../Actions/actionCreator';
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -12,22 +16,32 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
-        <div className="container-outer">
-          <Watchlist watchlist={this.props.watchlist} />
-          <button
-            onClick={() => {
-              this.props.dispatch(getPortfolio(this.props.email));
-            }}
-          >
-            Get Portfolio
-          </button>
-          <Portfolio
-            cash={this.props.cash}
-            watchlistData={this.props.watchlist}
-            transData={this.props.portfolio.transactions}
-          />
-        </div>
+        <Router>
+          <Route exact path='/'>
+            <Navbar/>
+            <div className="container-outer">
+              <Watchlist watchlist={this.props.watchlist} />
+              <button
+                onClick={() => {
+                  this.props.dispatch(getPortfolio(this.props.email));
+                }}
+              >
+              Get Portfolio
+              </button>
+              <Portfolio
+                cash={this.props.cash}
+                watchlistData={this.props.watchlist}
+                transData={this.props.portfolio.transactions}
+              />
+            </div>
+          </Route>
+          <Route path='/signup'>
+            <Signup/>
+          </Route>
+          <Route path='/login'>
+            <Login/>
+          </Route>
+        </Router>
       </div>
     );
   }
