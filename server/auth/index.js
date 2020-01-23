@@ -63,10 +63,10 @@ router.post('/signup', (req, res, next) => {
                         console.log(id.rows[0].id)
                         //cookie should be made here
                         //we can redirect
-                        // setUserIdCookie(req, res, id.row[0].id);
+                        setUserIdCookie(req, res, id.row[0].id);
 
                         res.json({
-                          id: id.rows[0].id,
+                          // id: id.rows[0].id,
                           message: 'Successful Signup'
                         });
                       });
@@ -103,7 +103,9 @@ router.post('/login', (req, res, next) => {
               if(matched) {
                 //setting the set cookie header
                 // set a cookie named user_id and set equal to user.id and pass in the options that will tell it to make it secure 
-                // setUserIdCookie(req,res, user.id);
+                
+                setUserIdCookie(req,res, result.rows[0].id);
+
                 res.json({
                   // id: user.id,
                   message: 'Loggin in...'
@@ -120,25 +122,33 @@ router.post('/login', (req, res, next) => {
     next(new Error('Invalid  login'));
   }
 
-  // User().where({
-  //   email: req.body.email
-  // }).first().then(user => {
-  //   if(user) {
-  //     //bcrypt.compareSync will hash the plain text passsword and compare
-  //     if(bcrypt.compareSync(req.body.password, user.password)) {
-  //       req.session.user = user.email;
-  //       res.redirect('/');
-  //     } else {
-  //       res.redirect('/signup');
-  //     }
-  //   } else {
-  //       res.redirect('/signin');
-  //   }
-  // });
+  db.query(`select * from users where email = '${user.email}'`)
+    .then(user => {
+      if(user.rows) {
+        //bcrypt.compareSync will hash the plain text passsword and compare
+        if(bcrypt.compareSync(req.body.password, user.rows[0].password)) {
+          console.log('here',req.session)
+          req.session.user = user.rows[0].email;
+          
+          // return res.redirect(200,'http://localhost:8080');
+        } else {
+          res.redirect('/signup');
+        }
+      } else {
+        res.redirect('/signup');
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
 });
 
 router.get('/logout', (req, res) => {
-  
+  res.clearCookie('user_id');
+  res.clearCookie('connect.sid')
+  res.json({
+    message: 'locked'
+  })
 })
 
 
