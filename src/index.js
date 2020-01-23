@@ -8,13 +8,16 @@ import reducers from './Reducers/reducer';
 import './styles.scss';
 import App from './App';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { helloSaga } from './sagas/sagas';
+import { mainSaga } from './sagas/sagas';
 
 // const store = createStore(reducers, composeWithDevTools())
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
 
-sagaMiddleware.run(helloSaga);
+sagaMiddleware.run(mainSaga);
 
 ReactDOM.render(
   <Provider store={store}>

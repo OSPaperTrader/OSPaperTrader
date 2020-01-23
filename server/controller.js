@@ -1,19 +1,33 @@
-const db = require("./models/stocks-db.js");
-const axios = require("axios");
+const db = require('./models/stocks-db.js');
+const axios = require('axios');
 
 const mainController = {};
 
-mainController.getCCData = (req, res, next) => {
-  db.query(
-    `select * from portfolio where user_id = (select id from users where login = '${req.params.username}')`,
+mainController.getTransData = async (req, res, next) => {
+  await db.query(
+    `select cash from users where email = '${req.params.email}'`,
     (err, result) => {
       if (err) {
         return next({
           log: err.stack,
-          message: "Error executing query in getData"
+          message: 'Error executing query in getData'
         });
       }
-      console.log("result.rows", result.rows);
+      console.log('CASH', result.rows[0].cash);
+      res.locals.cash = result.rows[0];
+    }
+  );
+
+  await db.query(
+    `select * from transactions where user_id = (select id from users where email = '${req.params.email}')`,
+    (err, result) => {
+      if (err) {
+        return next({
+          log: err.stack,
+          message: 'Error executing query in getData'
+        });
+      }
+      console.log('TRANS DATA', result.rows);
       res.locals.data = result.rows;
       return next();
     }

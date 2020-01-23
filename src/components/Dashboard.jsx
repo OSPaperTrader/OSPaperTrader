@@ -1,27 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import { connect } from 'react-redux';
 import Watchlist from "./Watchlist.jsx";
 import Portfolio from "./Portfolio.jsx";
 import Navbar from "./Navbar.jsx";
 import Signup from './Signup.jsx'
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { getPortfolio } from '../Actions/actionCreator';
 
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      watchListEntries: [
-        {
-          symbol: "XYZ",
-          name: "Xtreme Yoga Zone",
-          currentPrice: 99.87
-        },
-        
-      ],
-      portfolioEntries: [
-        { name: "AAPL", numOfShares: 59, buyingPrice: 300, dateBought: 200116 }
-      ]
-    };
   }
   render() {
     return (
@@ -30,8 +19,19 @@ class Dashboard extends React.Component {
           <Route exact path='/'>
             <Navbar/>
             <div className="container-outer">
-              <Watchlist />
-              <Portfolio />
+              <Watchlist watchlist={this.props.watchlist} />
+              <button
+                onClick={() => {
+                  this.props.dispatch(getPortfolio(this.props.email));
+                }}
+              >
+              Get Portfolio
+              </button>
+              <Portfolio
+                cash={this.props.cash}
+                watchlistData={this.props.watchlist}
+                transData={this.props.portfolio.transactions}
+              />
             </div>
           </Route>
           <Route path='/signup'>
@@ -43,4 +43,16 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+function mapStateToProps(state) {
+  return {
+    watchlist: state.watchlist,
+    portfolio: state.portfolio,
+    cash: state.cash,
+    username: state.username
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Dashboard);
