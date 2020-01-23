@@ -14,16 +14,6 @@ class TransactionRow extends React.Component {
         <td>{this.props.stockData.purchased_price}</td>
         <td>{this.props.stockData.qty_purchased}</td>
         <td>{this.props.currPrice || "unavailable"}</td>
-        {/* <th> </th>
-        <td className="stockData">
-          {new Date(
-            Date.parse(this.props.stockData.trans_date)
-          ).toLocaleDateString()}
-        </td>
-        <td className="stockData">{this.props.stockData.symbol}</td>
-        <td className="stockData">{this.props.stockData.purchased_price}</td>
-        <td className="stockData">{this.props.stockData.qty_purchased}</td>
-        <td className="stockData">{this.props.currPrice || "unavailable"}</td>
         <td>
           <button
             onClick={() =>
@@ -34,7 +24,7 @@ class TransactionRow extends React.Component {
           >
             Sell
           </button>
-        </td> */}
+        </td>
       </tr>
     );
   }
