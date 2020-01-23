@@ -24,12 +24,10 @@ class Login extends React.Component {
      }
    })
    .then( response => {
-   
    })
    .catch(error => {
      console.error('Error:', error)
    })
-  
   }
 
   render() {

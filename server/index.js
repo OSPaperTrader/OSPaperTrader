@@ -4,6 +4,12 @@ const mainController = require('./controller.js');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const auth = require('./auth/index');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const authMiddleware = require('./auth/middleware')
+const session = require('express-session');
+const dotenv = require('dotenv')
+
 
 const app = express();
 
@@ -11,10 +17,17 @@ const DIST_DIR = path.join(__dirname, '../dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 app.use(bodyParser.json());
+app.use(cookieParser('secret'));
 app.use(express.static(DIST_DIR));
+app.use(cors());
 
+app.use(session({ resave: true ,secret: 'secret' , saveUninitialized: true}));
 // mounting the auth router. any request that come to auth will be sent to the auth router
 app.use('/auth', auth);
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'));
+});
 
 app.get('/api/:email', mainController.getTransData, (req, res) => {
   console.log('res.locals.data index.js', res.locals.data);
@@ -23,10 +36,6 @@ app.get('/api/:email', mainController.getTransData, (req, res) => {
 
 app.get('/watchListData/:id', mainController.getWatchListData, (req, res) => {
   res.sendFile(res.locals.data);
-});
-
-app.get('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
 // app.get('/login', (req, res) => {
