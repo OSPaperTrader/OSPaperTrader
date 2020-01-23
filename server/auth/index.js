@@ -28,8 +28,8 @@ const validUser = user => {
 // post request with user infromation to the server
 router.post('/signup', (req, res, next) => {
   const user = {
-    firstName: req.body.firstname,
-    lastName: req.body.lastname,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password
   }
